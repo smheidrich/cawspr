@@ -43,6 +43,13 @@ Replacing all occurrences of `hello world` and its variants in a file
 cat original.txt | cawspr 'hello world' 'goodbye world' > replaced.txt
 ```
 
+## Advertisement
+
+Want to perform such replacements for both file contents *and* file paths in a
+directory recursively? Consider
+[full-apply](https://gitlab.com/smheidrich/full-apply) which works great with
+cawspr!
+
 ## Similar projects and other resources
 
 - [Softwarerecs StackExchange
