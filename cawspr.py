@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-from sys import argv, stdin
+from sys import stdin
 from typing import Sequence, Tuple
+
+import typer
 
 
 def to_space_sep_words(words: Sequence[str]) -> str:
@@ -9,6 +11,10 @@ def to_space_sep_words(words: Sequence[str]) -> str:
 
 def to_snake_case(words: Sequence[str]) -> str:
     return "_".join(words)
+
+
+def to_kebab_case(words: Sequence[str]) -> str:
+    return "-".join(words)
 
 
 def to_screaming_snake_case(words: Sequence[str]) -> str:
@@ -52,12 +58,30 @@ def replace_all(s: str, old_to_new: Tuple[str, str]) -> str:
     return "".join(new_s_list)
 
 
-if __name__ == "__main__":
-    old = argv[1]
-    new = argv[2]
+app = typer.Typer()
 
-    old_words = old.split(" ")
-    new_words = new.split(" ")
+
+@app.command()
+def main(
+    words_to_replace: str = typer.Argument(
+        ..., help="words to replace (lowercase, space-separated)"
+    ),
+    replace_with: str = typer.Argument(
+        ..., help="words to replace them with (lowercase, space-separated)"
+    ),
+):
+    """
+    Case And Word Separation Preserving Replace (CAWSPR)
+
+    Replace a multi-word string with another, preserving the manner in which
+    the words are joined together (e.g. snake_case, CamelCase, lowerCamelCase,
+    ...) in each occurrence.
+
+    Reads from standard input and outputs to standard output.
+    Currently only supports UTF-8 encoded text but that should change soon.
+    """
+    old_words = words_to_replace.split(" ")
+    new_words = replace_with.split(" ")
 
     inp = stdin.read()
 
@@ -66,6 +90,7 @@ if __name__ == "__main__":
         for caws_func in [
             to_space_sep_words,
             to_snake_case,
+            to_kebab_case,
             to_screaming_snake_case,
             to_camel_case,
             to_lower_camel_case,
@@ -75,3 +100,11 @@ if __name__ == "__main__":
     outp = replace_all(inp, mapping)
 
     print(outp, end="")
+
+
+def cli_main():
+    typer.run(main)
+
+
+if __name__ == "__main__":
+    cli_main()
