@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cawspr"
-version = "0.1.0"
+version = "0.1.1"
 description = "Case and word separation preserving replace"
 authors = ["smheidrich <smheidrich@weltenfunktion.de>"]
 packages = [
