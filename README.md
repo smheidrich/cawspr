@@ -31,7 +31,7 @@ That's it.
 ## Installation
 
 ```bash
-pip3 install git+https://gitlab.com/smheidrich/cawspr.git
+pip3 install cawspr
 ```
 
 ## Usage
