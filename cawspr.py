@@ -69,7 +69,7 @@ def main(
     replace_with: str = typer.Argument(
         ..., help="words to replace them with (lowercase, space-separated)"
     ),
-):
+) -> None:
     """
     Case And Word Separation Preserving Replace (CAWSPR)
 
@@ -102,7 +102,7 @@ def main(
     print(outp, end="")
 
 
-def cli_main():
+def cli_main() -> None:
     typer.run(main)
 
 

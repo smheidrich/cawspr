@@ -24,7 +24,7 @@ test:
     - python -m flake8
     - python -m isort --check .
     - python -m black --check .
-    - python -m mypy .
+    - python -m mypy --strict .
     - pytest
 
 build package:
