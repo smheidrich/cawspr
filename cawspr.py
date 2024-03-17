@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from collections.abc import Iterable
 from sys import stdin
 from typing import MutableMapping, Sequence, Tuple
 
@@ -29,7 +30,7 @@ def to_lower_camel_case(words: list[str]) -> str:
     return "".join(words[:1] + [word.capitalize() for word in words[1:]])
 
 
-def replace_all(s: str, old_to_new: Sequence[Tuple[str, str]]) -> str:
+def replace_all(s: str, old_to_new: Iterable[Tuple[str, str]]) -> str:
     """
     Simultaneous, non-overlapping execution of multiple string replacements.
     """
